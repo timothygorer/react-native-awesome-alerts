@@ -184,7 +184,7 @@ export default class AwesomeAlert extends Component {
                   width: 24,
                   height: 24,
                 }}
-                source={require("./closeX.png")}
+                source={require("../closeX.png")}
               />
             </TouchableOpacity>
           </View>
