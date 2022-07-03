@@ -9,6 +9,7 @@ import {
   BackHandler,
   Modal,
   Platform,
+  Image,
 } from "react-native";
 
 import PropTypes from "prop-types";
