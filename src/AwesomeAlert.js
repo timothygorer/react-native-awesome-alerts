@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Text,
   Animated,
@@ -9,14 +9,14 @@ import {
   BackHandler,
   Modal,
   Platform,
-} from 'react-native';
+} from "react-native";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import styles from './styles';
+import styles from "./styles";
 
 const HwBackHandler = BackHandler;
-const HW_BACK_EVENT = 'hardwareBackPress';
+const HW_BACK_EVENT = "hardwareBackPress";
 
 const { OS } = Platform;
 
@@ -103,8 +103,12 @@ export default class AwesomeAlert extends Component {
     } = data;
 
     return (
-      <TouchableOpacity  style={[styles.button, { backgroundColor }, buttonStyle]} testID={testID} onPress={onPress}>
-          <Text style={[styles.buttonText, buttonTextStyle]}>{text}</Text>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor }, buttonStyle]}
+        testID={testID}
+        onPress={onPress}
+      >
+        <Text style={[styles.buttonText, buttonTextStyle]}>{text}</Text>
       </TouchableOpacity>
     );
   };
@@ -122,7 +126,7 @@ export default class AwesomeAlert extends Component {
       cancelButtonStyle,
       cancelButtonTextStyle,
       onCancelPressed,
-      cancelButtonTestID
+      cancelButtonTestID,
     } = this.props;
 
     const {
@@ -132,7 +136,7 @@ export default class AwesomeAlert extends Component {
       confirmButtonStyle,
       confirmButtonTextStyle,
       onConfirmPressed,
-      confirmButtonTestID
+      confirmButtonTestID,
     } = this.props;
 
     const {
@@ -173,6 +177,17 @@ export default class AwesomeAlert extends Component {
         <Animated.View
           style={[styles.contentContainer, animation, contentContainerStyle]}
         >
+          <View style={{ alignItems: "flex-end" }}>
+            <TouchableOpacity onPress={this._springHide}>
+              <Image
+                style={{
+                  width: 24,
+                  height: 24,
+                }}
+                source={require("./closeX.png")}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={[styles.content, contentStyle]}>
             {showProgress ? (
               <ActivityIndicator size={progressSize} color={progressColor} />
@@ -198,9 +213,9 @@ export default class AwesomeAlert extends Component {
     const { show, showSelf } = this.state;
     const { modalProps = {}, closeOnHardwareBackPress } = this.props;
 
-    const wrapInModal = OS === 'android' || OS === 'ios';
+    const wrapInModal = OS === "android" || OS === "ios";
 
-    return showSelf ?
+    return showSelf ? (
       wrapInModal ? (
         <Modal
           animationType="none"
@@ -215,8 +230,10 @@ export default class AwesomeAlert extends Component {
         >
           {this._renderAlert()}
         </Modal>
-      ) : this._renderAlert()
-    : null;
+      ) : (
+        this._renderAlert()
+      )
+    ) : null;
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -256,7 +273,7 @@ AwesomeAlert.propTypes = {
   ]),
   modalProps: PropTypes.object,
   cancelButtonTestID: PropTypes.string,
-  confirmButtonTestID: PropTypes.string
+  confirmButtonTestID: PropTypes.string,
 };
 
 AwesomeAlert.defaultProps = {
@@ -268,12 +285,12 @@ AwesomeAlert.defaultProps = {
   closeOnHardwareBackPress: true,
   showCancelButton: false,
   showConfirmButton: false,
-  cancelText: 'Cancel',
-  confirmText: 'Confirm',
-  cancelButtonColor: '#D0D0D0',
-  confirmButtonColor: '#AEDEF4',
+  cancelText: "Cancel",
+  confirmText: "Confirm",
+  cancelButtonColor: "#D0D0D0",
+  confirmButtonColor: "#AEDEF4",
   customView: null,
   modalProps: {},
-  cancelButtonTestID: 'awesome-alert-cancel-btn',
-  confirmButtonTestID: 'awesome-alert-confirm-btn'
+  cancelButtonTestID: "awesome-alert-cancel-btn",
+  confirmButtonTestID: "awesome-alert-confirm-btn",
 };
